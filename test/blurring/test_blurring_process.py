@@ -23,12 +23,12 @@ def test_get_filter_class_with_params():
 
 def test_full_blurring_regular_case():
     with app.app_context():
-        with open(f"{TEST_DIRECTORY}/input/input-lenna-bee.json") as json_file:
+        with open(f"{TEST_DIRECTORY}/input/input-lenna-bee-voiture.json") as json_file:
             result = blurr(json.load(json_file))
 
         assert result.status == Status.RUNNING.name
         assert result.nb_of_completed_process == 0
-        assert result.nb_of_total_process == 33
+        assert result.nb_of_total_process == 66
         should_continue = True
         count = 0
         while should_continue:
@@ -45,4 +45,4 @@ def test_full_blurring_regular_case():
         print(f" count => {count}")
         assert current_run.status == Status.SUCCESS.name
         assert current_run.result is not None
-        assert current_run.nb_of_completed_process == 33
+        assert current_run.nb_of_completed_process == 66
