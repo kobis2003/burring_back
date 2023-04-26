@@ -20,6 +20,7 @@ dependencies = [
     "Flask==2.2.2",
     "connexion==2.14.2",
     "flask-marshmallow==0.15.0",
+    "Flask-SQLAlchemy==3.0.3",
     "marshmallow-sqlalchemy==0.29.0"
 ]
 

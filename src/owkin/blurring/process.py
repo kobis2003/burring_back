@@ -58,15 +58,14 @@ def __get_total_nb_of_process(blurring_input: Input) -> int:
     return len(blurring_input.images) * len(blurring_input.filters)
 
 
-def __parse_blurring_input(json_content: str, run_id: int) -> Input:
+def __parse_blurring_input(input_content: dict, run_id: int) -> Input:
     """
     used to parse the JSON content into an object
-    :param json_content: The content of the JSON
+    :param input_content: The content of the JSON
     :return: The input object corresponding
     """
     try:
-        input_dict = json.loads(json_content)
-        input_obj = Input(**input_dict)
+        input_obj = Input(**input_content)
         return input_obj
     except:
         error_message = "Error when parsing the JSON"
@@ -91,7 +90,7 @@ def __process_blurring(blurring_input: Input, run_id: int) -> Output:
                     image_results.append(image_result)
                     progress(run_id)
             result = Output(image_results, images)
-            finish(run_id, str(Output(image_results, images).__dict__))
+            finish(run_id, str(Output(image_results, images).to_dict()))
         except ValueError as e:
             failure(run_id, str(e))
             raise ProcessError(str(e))
