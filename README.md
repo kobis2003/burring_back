@@ -18,3 +18,5 @@ add a docker-compose file for the local development
 -> The result is returned in String (it should be an entity)
 -> The SQL Alchemy choice clearly deserved a discussion between dev before being done 
 (like will there be just one table)
+-> Only PNG file (no other file type)
+-> faire un system de logging correcte

@@ -24,12 +24,13 @@ def test_get_filter_class_with_params():
 def test_full_blurring_regular_case():
     with app.app_context():
         with open(f"{TEST_DIRECTORY}/input/input-lenna-bee.json") as json_file:
-            result = blurr(json_file.read())
+            result = blurr(json.load(json_file))
 
         assert result.status == Status.RUNNING.name
         assert result.nb_of_completed_process == 0
-        assert result.nb_of_total_process == 4
+        assert result.nb_of_total_process == 33
         should_continue = True
+        count = 0
         while should_continue:
             current_run = read_one(result.id)
             if (
@@ -39,7 +40,9 @@ def test_full_blurring_regular_case():
                 should_continue = False
             current_progress = current_run.nb_of_completed_process
             print(f"current_progress => {current_progress} ")
-            time.sleep(2)
+            count = count + 1
+            time.sleep(1)
+        print(f" count => {count}")
         assert current_run.status == Status.SUCCESS.name
         assert current_run.result is not None
-        assert current_run.nb_of_completed_process == 4
+        assert current_run.nb_of_completed_process == 33

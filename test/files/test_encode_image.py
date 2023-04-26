@@ -5,7 +5,7 @@ TEST_DIRECTORY = os.environ.get("TEST_DIRECTORY", ".")
 
 
 def test_encode_image():
-    image_name = "bumblebee_image"
+    image_name = "voiture_image"
     image_file_name = f"{image_name}.png"
     image_file_txt = f"{image_name}.txt"
     image_path = f"{TEST_DIRECTORY}/files/{image_file_name}"
