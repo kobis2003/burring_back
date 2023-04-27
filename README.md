@@ -1,4 +1,6 @@
 # The blurring project
+This is a technical test project. It is built using python3.10, SQL Alchemy 
+and Marshmallow (and pytest for the tests)
 
 ## Make the backend work
 
