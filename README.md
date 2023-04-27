@@ -1,7 +1,6 @@
 # The blurring project
 
 ## Make the backend work
-This part describe how to run the project
 
 ### Install the python library
 You first need to install python3.10.
