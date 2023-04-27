@@ -6,4 +6,4 @@ else
     python3 ./db/init_db.py
     echo "blurring DB has been just created."
 fi
-
+python3 ./src/app.py

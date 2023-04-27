@@ -1,4 +1,5 @@
 from flask import abort, request
+from flask_cors import CORS
 
 import config
 from owkin.blurring.process import blurr
@@ -6,9 +7,10 @@ from owkin.models.run import burning_run_schema
 from owkin.repository.runs import read_one
 
 app = config.connex_app
+CORS(app.app)
 
 
-@app.route('/run/<run_id>', methods=['GET'])
+@app.route("/run/<run_id>", methods=["GET"])
 def get_one(run_id: int):
     run = read_one(run_id)
     if run is not None:
@@ -17,7 +19,7 @@ def get_one(run_id: int):
         abort(404, f"Run with {run_id} not found")
 
 
-@app.route('/run/burring_process', methods=['POST'])
+@app.route("/run/burring_process", methods=["POST"])
 def launch_burring_process():
     try:
         run = blurr(request.json)

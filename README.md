@@ -19,7 +19,5 @@ add a docker-compose file for the local development
 -> The SQL Alchemy choice clearly deserved a discussion between dev before being done 
 (like will there be just one table)
 -> Only PNG file (no other file type)
--> faire un system de logging correcte
--> shouldn't do all the picture at once as it's quite heavy to transfert. Maybe should have done the image treatment 
-   one by one so that the user can start using the application with the first image and not wait for all the image 
-   to be processed to be able to see the first one.
+-> do a correct logging mechanism
+-> no time for perfect tox

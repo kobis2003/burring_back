@@ -19,14 +19,14 @@ class Output:
     def __init__(
         self, image_results: List[ImageResult], initial_images: List[BlurringImage]
     ):
-        self.result_images = image_results
+        self.image_results = image_results
         self.initial_images = initial_images
 
     def to_dict(self):
         image_results_in_dict = []
         initial_images_in_dict = []
-        for result_image in self.result_images:
-            image_results_in_dict.append(result_image.to_dict())
+        for image_result in self.image_results:
+            image_results_in_dict.append(image_result.to_dict())
         for initial_image in self.initial_images:
             initial_images_in_dict.append(initial_image.__dict__)
         return {
