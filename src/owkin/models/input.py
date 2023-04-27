@@ -1,3 +1,7 @@
+"""
+Entities of the input of the blurring process
+"""
+
 from typing import List, Optional
 
 

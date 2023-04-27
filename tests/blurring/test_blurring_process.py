@@ -25,7 +25,9 @@ def test_get_filter_class_with_params():
 
 def test_full_blurring_regular_case():
     with app.app_context():
-        with open(f"{TEST_DIRECTORY}/input/input-lenna-bee-voiture.json") as json_file:
+        with open(
+            f"{TEST_DIRECTORY}/files/input/input-lenna-bee-voiture.json"
+        ) as json_file:
             result = blurr(json.load(json_file))
 
         assert result.status == Status.RUNNING.name

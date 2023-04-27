@@ -1,14 +1,13 @@
 import base64
 import inspect
-import json
 import time
+import typing
 from enum import Enum
 from io import BytesIO
 from multiprocessing import Process, Queue
 
 from PIL import ImageFilter, Image
 
-from config import app
 from owkin.models.input import Input, Filter, BlurringImage
 from owkin.models.output import ImageResult, Output
 from owkin.models.run import BlurringRun
@@ -33,6 +32,11 @@ class FilterNames(Enum):
 
 
 def blurr(json_content: dict) -> BlurringRun:
+    """
+    Do the entity creation + the launch blurr process.
+    :param json_content:
+    :return: The newly created entity (with the right nb_of_total_process)
+    """
     run = create_new_run()
     blurring_input = __parse_blurring_input(json_content, run.id)
     run = change_total_nb_of_process(run.id, __get_total_nb_of_process(blurring_input))
@@ -74,6 +78,13 @@ def __parse_blurring_input(input_content: dict, run_id: int) -> Input:
 
 
 def __process_blurring(blurring_input: Input, run_id: int) -> Output:
+    """
+    Function that is called in a concurrent process that does all the blurring part.
+    The progress are put into the DB
+    :param blurring_input: The necessary information to process to the blurring operation
+    :param run_id: The id of the run
+    :return: a list of initial images + the list of result image. The link is made by the name of the image.
+    """
     image_results = []
     images = []
     try:
@@ -100,6 +111,12 @@ def __process_blurring(blurring_input: Input, run_id: int) -> Output:
 
 
 def __process_blurring_for_image(image: BlurringImage, blurring_filter: Filter) -> str:
+    """
+    process the blurring of a specific image with a specific filter
+    :param image:
+    :param blurring_filter:
+    :return: the BASE64 encoded string value corresponding to the image
+    """
     to_process_image = Image.open(BytesIO(base64.b64decode(image.data)))
     # we get all the classes of the image filter file:
     filter_class = __get_filter_class(blurring_filter)
@@ -109,7 +126,14 @@ def __process_blurring_for_image(image: BlurringImage, blurring_filter: Filter) 
     return (base64.b64encode(buffered.getvalue())).decode("utf-8")
 
 
-def __get_filter_class(blurring_filter: Filter) -> any:
+def __get_filter_class(blurring_filter: Filter) -> typing.Any:
+    """
+    complicated function used for getting the class that correspond to the
+    name of the filter that is in the JSON input file.
+    The filter class is built with the params of the Filter object.
+    :param blurring_filter: the filter we want to get the class of
+    :return: The build class necessary to the python library
+    """
     class_members = inspect.getmembers(ImageFilter, inspect.isclass)
     for filter_class_name in class_members:
         if filter_class_name[0] == blurring_filter.name:

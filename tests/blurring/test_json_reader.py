@@ -7,7 +7,9 @@ TEST_DIRECTORY = os.environ.get("TEST_DIRECTORY", ".")
 
 
 def test_regular_case():
-    with open(f"{TEST_DIRECTORY}/input/input-lenna-bee-voiture.json") as json_file:
+    with open(
+        f"{TEST_DIRECTORY}/files/input/input-lenna-bee-voiture.json"
+    ) as json_file:
         input_dict = json.loads(json_file.read())
     result = __parse_blurring_input(input_dict, 41)
     assert len(result.images) == 6

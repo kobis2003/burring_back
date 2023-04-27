@@ -5,3 +5,5 @@
 /.pytest_cache/
 /build/
 /venv/
+/.tox/
+/.mypy_cache/

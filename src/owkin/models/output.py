@@ -1,3 +1,7 @@
+"""
+Entities of the output of the blurring process
+"""
+
 from typing import List
 
 from owkin.models.input import BlurringImage, Filter
