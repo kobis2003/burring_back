@@ -40,6 +40,6 @@ pythonpath = [
     ".", "src","test"
 ]
 env = [
-    "TEST_DIRECTORY = ."
+    "TEST_DIRECTORY = ./tests"
 ]
 log_cli = 1
