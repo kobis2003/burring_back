@@ -5,7 +5,7 @@
 ### Install the python library
 You first need to install python3.10.
 
-When done, run: `install pip3 .[test]` on a terminal in the project directory
+When done, run: `pip3 install .[test]` on a terminal in the project directory
 It should install every library that are in the pyproject file.
 
 ### Create the SQL lite DB
