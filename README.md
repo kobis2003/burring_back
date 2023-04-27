@@ -44,10 +44,10 @@ JSON with this kind of size are killing my computer very often when manipulating
 for example.
 
 ### DB 
-The DB chosen is SQL lite but on PROD, postgreSQL would be my choice. 
+The chosen DB is SQL lite but on PROD, postgreSQL would be my choice. 
 I have made just one table for being faster but I would probably separate the json part from the run.
 Whether by making two different table or by putting the JSON on S3. The idea behind it is that there won't be 
-other performance problem than the JSON files so we need to change, let's not make it mandatory to change everything.
+other performance problem than the JSON files so that if we need to change, it won't be mandatory to change everything.
 
 I have also used SQL Alchemy because I thought (I never used it before) that it was cool to use entity mapping
 (it's like hibernate).
@@ -57,7 +57,7 @@ concurrent processes change the DB. I have manage to deal with it but I would be
 
 ### Process 
 As there was a loading bar asked, I needed to launch concurrent process. I used the Process option of python 
-(after trying async and threaded function). I have made a piece of code before to make sure that no more 
+(after trying async and threaded function...). I have made a piece of code before to make sure that no more 
 than 5 project are running at the same time (otherwise, it wait for one to finish). It's some kind of security if
 a lot of user are calling the blurring function at the same time but I don't know if it works.
 
@@ -68,7 +68,7 @@ of being thread safe.
 -> Batch job instead of process for thread safe (AWS batch or it's kubernete equivalent)
 -> A clean Swagger
 -> Clean JSON validation (with nice to read exception that makes it possible for the user to correct)
--> The result of the process is returned in String as it is saved in SqL Lite (it should be an entity)
+-> The result of the blurring process (containing the images) is returned in String as it is saved in SqL Lite (it should be an entity)
 -> Only PNG file (no other file type) are allowed
 -> do a correct logging mechanism
 -> no time for perfect tox

@@ -128,11 +128,11 @@ def __process_blurring_for_image(image: BlurringImage, blurring_filter: Filter) 
 
 def __get_filter_class(blurring_filter: Filter) -> typing.Any:
     """
-    complicated function used for getting the class that correspond to the
+    complicated function used for getting an instance of the filter class that correspond to the
     name of the filter that is in the JSON input file.
-    The filter class is built with the params of the Filter object.
-    :param blurring_filter: the filter we want to get the class of
-    :return: The build class necessary to the python library
+    The filter instance is built with the params attribute of the Filter object.
+    :param blurring_filter: the filter we want to get the object of
+    :return:An instance of the class necessary to the python library
     """
     class_members = inspect.getmembers(ImageFilter, inspect.isclass)
     for filter_class_name in class_members:
