@@ -1,0 +1,7 @@
+/blurring.db
+/src/blurring_back.egg-info/
+/src/burring_back.egg-info/
+/.idea/
+/.pytest_cache/
+/build/
+/venv/
